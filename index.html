@@ -9,9 +9,15 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;700&family=Ubuntu:wght@400&display=swap"
       rel="stylesheet"
     />
+
+    <script
+      src="https://kit.fontawesome.com/a7221279c0.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Mugabe Nshuti Ignace</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <section id="header">
       <header class="header-main">
@@ -131,10 +137,12 @@
             <div class="card-header">
               <h3 class="project-title">Resume Builder Web Application</h3>
               <div class="card-links">
-                <a href="#"><img src="images/27_259.svg" alt="GitHub" /></a>
+                <a href="https://github.com/Igna73M/Resume-Builder"
+                  ><i class="fa-solid fa-code-branch"></i
+                ></a>
                 <a href="#"
-                  ><img src="images/27_261.svg" alt="External Link"
-                /></a>
+                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
+                ></a>
               </div>
             </div>
 
@@ -159,10 +167,12 @@
             <div class="card-header">
               <h3 class="project-title">Responsive Portfolio Website</h3>
               <div class="card-links">
-                <a href="#"><img src="images/27_290.svg" alt="GitHub" /></a>
-                <a href="#"
-                  ><img src="images/27_292.svg" alt="External Link"
-                /></a>
+                <a href="https://github.com/Igna73M/my-portfolio"
+                  ><i class="fa-solid fa-code-branch"></i
+                ></a>
+                <a href="https://igna73m.github.io/my-portfolio/"
+                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
+                ></a>
               </div>
             </div>
 
@@ -181,24 +191,28 @@
 
           <div class="project-card">
             <div class="card-header">
-              <h3 class="project-title">Task Management Dashboard</h3>
+              <h3 class="project-title">Smart Study Planner</h3>
               <div class="card-links">
-                <a href="#"><img src="images/27_346.svg" alt="GitHub" /></a>
-                <a href="#"
-                  ><img src="images/27_348.svg" alt="External Link"
-                /></a>
+                <a href="https://github.com/Igna73M/Smart-Study-Planner"
+                  ><i class="fa-solid fa-code-branch"></i
+                ></a>
+                <a href="https://theplannerst.netlify.app/"
+                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
+                ></a>
               </div>
             </div>
             <!-- Project's image -->
             <div class="three"></div>
             <p class="project-desc">
-              Web-based task management system with user authentication and
-              real-time updates.
+              Web-based study planner with user authentication, scheduling, and
+              real-time updates to help students organize and track their study
+              sessions efficiently.
             </p>
             <div class="project-tags">
               <span class="tag">Javascript</span><span class="tag">CSS3</span
               ><span class="tag">HTML5</span
               ><span class="tag">Responsive Design</span>
+              <span class="tag">CRUD</span>
             </div>
           </div>
 
@@ -206,10 +220,12 @@
             <div class="card-header">
               <h3 class="project-title">Weather App Interface</h3>
               <div class="card-links">
-                <a href="#"><img src="images/27_318.svg" alt="GitHub" /></a>
-                <a href="#"
-                  ><img src="images/27_320.svg" alt="External Link"
-                /></a>
+                <a href="https://github.com/Igna73M/Small-weather-App"
+                  ><i class="fa-solid fa-code-branch"></i
+                ></a>
+                <a href="https://theweathera.netlify.app/"
+                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
+                ></a>
               </div>
             </div>
             <!-- Project's image -->
@@ -326,38 +342,57 @@
             opportunities? I'd love to hear from you.
           </p>
         </div>
-        <form class="contact-form">
+        <form class="contact-form" method="POST" id="form">
+          <!-- email form Public Key  -->
+          <input
+            type="hidden"
+            name="access_key"
+            value="83f1655b-a558-4a10-ac7b-807c46297272"
+          />
+
           <div class="form-row">
             <div class="form-group">
               <label for="first-name">First name</label>
-              <input type="text" id="first-name" name="first-name" />
+              <input type="text" id="first-name" name="first-name" required />
             </div>
             <div class="form-group">
               <label for="last-name">Last name</label>
-              <input type="text" id="last-name" name="last-name" />
+              <input type="text" id="last-name" name="last-name" required />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" />
+              <input type="email" id="email" name="email" required />
             </div>
             <div class="form-group">
               <label for="phone">Phone number</label>
-              <input type="tel" id="phone" name="phone" />
+              <input type="tel" id="phone" name="phone" required />
             </div>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
             <textarea
+              required
               id="message"
               name="message"
               placeholder="Type your message..."
             ></textarea>
           </div>
           <div class="form-submit">
-            <button type="submit" class="btn-submit">Submit</button>
+            <button type="reset" class="btn-reset">
+              <p>Reset</p>
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+            <button type="submit" class="btn-submit">
+              <p>Submit</p>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
           </div>
+
+          <!-- To be removed after -->
+          <div id="result"></div>
         </form>
       </div>
     </section>
@@ -377,11 +412,20 @@
             </ul>
           </nav>
           <div class="social-links">
-            <a href="#"><img src="images/29_528.svg" alt="Twitter" /></a>
-            <a href="#"><img src="images/29_530.svg" alt="LinkedIn" /></a>
+            <a href="https://www.linkedin.com/in/mugabeignace/"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+            <a href="https://twitter.com/ignas73"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a href="https://github.com/Igna73M"
+              ><i class="fa-brands fa-github"></i
+            ></a>
           </div>
         </div>
       </footer>
     </section>
+
+    <script src="index.js"></script>
   </body>
 </html>
