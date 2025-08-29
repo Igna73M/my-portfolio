@@ -57,11 +57,11 @@ a {
 }
 
 .container {
-  max-width: 1728px;
+  max-width: 108rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 85px;
-  padding-right: 85px;
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
 
 .section-title {
@@ -115,7 +115,7 @@ a {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.8);
   top: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 1000;
   backdrop-filter: blur(10px);
 }
@@ -194,7 +194,7 @@ a {
 }
 .hero-text {
   flex: 1;
-  max-width: 730px;
+  max-width: 45rem;
 }
 .hero-welcome {
   font-family: "Poppins", sans-serif;
@@ -230,18 +230,16 @@ a {
 .hero-tags {
   display: flex;
   margin-bottom: 40px;
-  width: 100%;
 }
 
 .scroller {
-  max-width: 600px;
+  max-width: 35rem;
   height: contain;
 }
 
 .scroller-inner {
   display: flex;
   gap: 1rem;
-  /* padding-block: 1rem; */
 }
 
 .scroller[data-animated="true"] {
@@ -263,9 +261,8 @@ a {
 }
 
 .scroller[data-animated="true"] .scroller-inner {
-  width: max-content;
   flex-wrap: nowrap;
-  animation: scrollAnime var(--animation-duration, 40s)
+  animation: scrollAnime var(--animation-duration, 20s)
     var(--animation-direction, forwards) linear infinite;
 }
 
@@ -303,6 +300,21 @@ a {
   max-width: 100%;
   height: auto;
   width: 604px;
+}
+@media (max-width: 1200px) {
+  .hero-image img {
+    width: 300px;
+  }
+}
+@media (max-width: 480px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media (max-width: 320px) {
+  html {
+    font-size: 9px;
+  }
 }
 @media (max-width: 992px) {
   .hero-container {
