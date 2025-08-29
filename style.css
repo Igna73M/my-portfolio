@@ -32,6 +32,25 @@ body {
   scroll-behavior: smooth;
 }
 
+.scroll-watcher {
+  position: fixed;
+  height: 0.5vh;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: var(--primary-blue);
+  scale: 0 1;
+  animation: scroll-watcher linear;
+  animation-timeline: scroll(y);
+  transform-origin: left;
+}
+
+@keyframes scroll-watcher {
+  to {
+    scale: 1 1;
+  }
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -92,13 +111,18 @@ a {
 }
 
 /* CSS for section section:header */
+#header {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
 .header-main {
-  background-color: var(--primary-dark);
+  background-color: transparent;
   box-shadow: 0px 5.33px 80px 0px rgba(0, 0, 0, 0.1);
   padding: 25px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 .header-container {
   display: flex;
@@ -110,6 +134,8 @@ a {
   font-weight: 700;
   font-size: 24px;
   color: var(--primary-blue);
+  display: inline-block;
+  -webkit-text-stroke: 1px var(--text-light);
 }
 .main-nav ul {
   display: flex;
@@ -127,10 +153,13 @@ a {
 }
 .main-nav a:hover {
   color: var(--primary-blue);
+  text-decoration: underline;
+  text-decoration-color: var(--text-light);
+  text-underline-offset: 8px;
 }
 .contact-btn {
-  border: 1.33px solid #000000;
-  color: var(--primary-blue);
+  border: 1.33px solid var(--primary-blue);
+  color: var(--text-light);
   background-color: transparent;
   padding: 12px 32px;
   border-radius: 5.33px;
@@ -141,7 +170,6 @@ a {
 .contact-btn:hover {
   background-color: var(--primary-blue);
   color: var(--text-light);
-  border-color: var(--primary-blue);
 }
 @media (max-width: 768px) {
   .main-nav {
@@ -152,6 +180,10 @@ a {
 /* CSS for section section:hero */
 #hero {
   background: linear-gradient(180deg, #ffffff 0%, #e5e4e2 100%);
+  background-image: url("./img/background.jpg");
+  background-size: cover;
+  background-position: center;
+
   padding: 60px 0;
 }
 .hero-container {
@@ -168,7 +200,7 @@ a {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 14px;
-  color: var(--text-dark);
+  color: var(--text-light);
   margin-bottom: 11px;
 }
 .hero-name {
@@ -176,14 +208,14 @@ a {
   font-weight: 700;
   font-size: 48px;
   line-height: 1.2;
-  color: var(--primary-dark);
+  color: var(--text-light);
   margin-bottom: 11px;
 }
 .hero-title {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 24px;
-  color: var(--primary-blue);
+  color: var(--text-light);
   margin-bottom: 11px;
 }
 .hero-description {
@@ -191,23 +223,75 @@ a {
   font-weight: 400;
   font-size: 20px;
   line-height: 1.5;
-  color: var(--text-dark);
+  color: var(--primary-dark);
   margin-bottom: 30px;
 }
+
 .hero-tags {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
   margin-bottom: 40px;
+  width: 100%;
 }
+
+.scroller {
+  max-width: 600px;
+  height: contain;
+}
+
+.scroller-inner {
+  display: flex;
+  gap: 1rem;
+  /* padding-block: 1rem; */
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+  mask: linear-gradient(
+    90deg,
+    transparent,
+    var(--text-light) 20%,
+    var(--text-light) 80%,
+    transparent
+  );
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    var(--text-light) 20%,
+    var(--text-light) 80%,
+    transparent
+  );
+}
+
+.scroller[data-animated="true"] .scroller-inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scrollAnime var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"] {
+  --animation-direction: reverse;
+}
+.scroller[data-direction="left"] {
+  --animation-direction: forwards;
+}
+
+@keyframes scrollAnime {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
 .hero-tags span {
-  background-color: var(--bg-medium-gray);
-  color: black;
+  background-color: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--primary-dark);
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   padding: 4px 15px;
-  border-radius: 12px;
+  border-radius: 5px;
 }
+
 .hero-buttons {
   display: flex;
   gap: 20px;
@@ -260,6 +344,9 @@ a {
 .about-content {
   max-width: 1154px;
   margin: 0 auto 60px;
+  animation: fade-out linear forwards;
+  animation-timeline: view();
+  animation-range: exit;
 }
 .about-content p {
   font-family: "Roboto", sans-serif;
@@ -364,6 +451,24 @@ a {
   border-radius: 0.9rem;
   margin-bottom: 1rem;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-img {
+    scale: 0.6;
+    opacity: 0.8;
+    animation: fade-in linear forwards;
+    animation-timeline: view();
+    animation-range: entry;
+  }
+
+  @keyframes fade-in {
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -648,7 +753,7 @@ textarea:focus {
 
 /* CSS for section section:footer */
 #footer-section {
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 40px 0;
 }
 .footer-container {
@@ -667,11 +772,13 @@ textarea:focus {
 .footer-nav a {
   font-family: "Roboto", sans-serif;
   font-size: 21.33px;
-  color: #000000;
+  color: var(--text-light);
 }
 .footer-nav a:hover {
   color: var(--primary-blue);
   text-decoration: underline;
+  text-decoration-color: var(--text-light);
+  text-underline-offset: 8px;
 }
 .social-links {
   display: flex;
@@ -680,7 +787,7 @@ textarea:focus {
 }
 .social-links a {
   font-size: 24px;
-  color: #000000;
+  color: var(--text-light);
   transition: color 0.3s ease;
 }
 .social-links a:hover {
@@ -802,4 +909,10 @@ textarea:focus {
   width: 220px;
   height: 220px;
   opacity: 1;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
 }
